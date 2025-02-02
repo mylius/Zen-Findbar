@@ -2,4 +2,4 @@
 
 ![Image of Zen Findbar](./zen_findbar.png "Zen Findbar")
 
-A minimal floating findbar floating in the top right for the zen-browser.
+A minimal findbar with clickaway behavior floating in the top right for the zen-browser.
