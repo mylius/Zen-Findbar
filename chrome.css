@@ -1,0 +1,146 @@
+@-moz-document url-prefix("chrome:") {
+  findbar {
+    display: flex !important;
+    border-radius: var(--zen-border-radius) !important;
+    margin: 0px !important;
+    width: 45% !important; 
+    max-width: 320px;
+    height: 0 !important;
+    opacity: 0;
+    padding: 0;
+    border: 0 !important;
+    position: fixed !important;
+    left: -9999px;
+    pointer-events: none;
+    
+    &:focus-within {
+      display: flex !important;
+      height: auto !important;
+      opacity: 1;
+      padding: initial;
+      border-radius: var(--zen-border-radius) !important;
+      position: absolute !important;
+      top: 5%;
+      left: 80%;
+      margin: 0px !important;
+      pointer-events: auto;
+    }
+    overflow: unset !important;
+    box-shadow: var(--box-shadow-10);
+    background: var(--zen-colors-tertiary) !important;
+    
+    transition:
+      top 0.35s ease,
+      bottom 0.35s ease !important;
+    
+    visibility: visible !important;
+    
+    /* Remove containers */
+    & .findbar-container,
+    & .findbar-element-container {
+      all: unset !important;
+      display: contents !important;
+      overflow: hidden !important;
+    }
+    
+    /* Style the input and nav buttons */
+    & .findbar-textbox,
+    & .findbar-textbox-wrapper {
+      width: 87% !important;
+      font-size: 1.9em !important;
+      min-width: 87% !important;
+      margin: 0 0 !important;
+      padding: 0 0 0 5% !important;
+      box-sizing: border-box !important;
+      background-color: transparent !important;
+      border: none !important;
+    }
+
+       
+    & .findbar-find-previous,
+    & .findbar-find-next {
+      position: absolute !important;
+      top: 50% !important;
+      transform: translateY(-50%) !important;
+      z-index: 2 !important;
+      margin: 0 !important;
+    }
+    
+    & .findbar-find-previous {
+      right: 40px !important;
+    }
+    
+    & .findbar-find-next {
+      right: 8px; !important;
+    }
+    
+    & .found-matches {
+      display: block !important;
+      position: absolute !important;
+      right: 65px !important;
+      background-color: rgba(255, 255, 255, 0.95);
+      bottom: 4px !important;
+      font-size: 0.8em !important;
+      opacity: 1 !important;
+      pointer-events: none !important;
+      z-index: 3 !important;
+      box-shadow: 0 0 4px 4px rgba(255, 255, 255, 0.7) !important;
+      padding: 0px 3px !important;
+    }
+
+    /* Hide checkboxes, labels, messages and other elements */
+    & .checkbox-container,
+    & .checkbox-check,
+    & .findbar-find-fast,
+    & .findbar-entire-word,
+    & .findbar-case-sensitive,
+    & .findbar-match-diacritics,
+    & .findbar-closebutton,
+    & .findbar-not-found,
+    & .findbar-label:not(.found-matches),
+    & .findbar-wrapped-to-top,
+    & .findbar-wrapped-to-bottom,
+    & .findbar-status,
+    & .findbar-status-label,
+    & label:not(.found-matches),
+    & checkbox {
+      display: none !important;
+      width: 0 !important;
+      height: 0 !important;
+      margin: 0 !important;
+      padding: 0 !important;
+      opacity: 0 !important;
+      pointer-events: none !important;
+    }
+    
+    &[hidden="true"] {
+      top: -150px;
+    }
+    @starting-style {
+      top: -150px;
+    }
+  }
+ 
+
+  /* Background blur */
+  @media (-moz-bool-pref: "theme.better_find_bar.transparent_background") {
+    findbar,
+    findbar .findbar-textbox:not([status="notfound"]) {
+      backdrop-filter: blur(15px);
+      
+      background: color-mix(
+        in hsl,
+        var(--zen-colors-tertiary),
+        transparent 30%
+      ) !important;
+    }
+    findbar .findbar-textbox:not([status="notfound"]) {
+      background: color-mix(
+        in hsl,
+        var(--zen-colors-tertiary),
+        transparent 10%
+      ) !important;
+    }
+  }
+}
+
